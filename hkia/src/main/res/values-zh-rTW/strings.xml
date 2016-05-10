@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HKIA展示</string>
+    <string name="positioning">Positioning…</string>
+    <string name="settings">設定</string>
+    <string name="Search">搜尋</string>
+    <string name="exit">出入口</string>
+    <string name="food">餐點</string>
+    <string name="refreshment">飲品</string>
+    <string name="toilet">廁所</string>
+    <string name="shopping">購物</string>
+    <string name="atm">提款機</string>
+    <string name="takeme">帶我去</string>
+    <string name="arrangepath">路徑規劃</string>
+    <string name="detail">更多</string>
+    <string-array name="more">
+        <item>設定</item>
+        <item>關於帆船科技</item>
+        <item>意見回饋</item>
+    </string-array>
+    <string name="no_location_region">本區域無「%1$s」</string>
+    <string name="detail_info">共%1$d筆相關資料</string>
+    <string name="up_remind">請上樓至</string>
+    <string name="down_remind">請下樓至</string>
+    <string name="target">目的地</string>
+    <string name="myposition">我的位置</string>
+    <string name="set_start_point">請設定起點..</string>
+    <string name="set_end_point">請設定終點..</string>
+    <string name="start_navi">開始導航</string>
+    <string name="start_preview">路線預覽</string>
+    <string name="cancel_navi">結束導航</string>
+    <string name="cancel_preview">結束預覽</string>
+    <string name="action_aboutus">關於MyMap</string>
+    <string name="action_feedback">意見回饋</string>
+    <string name="not_enough_accuracy">定位不準嗎?</string>
+    <string name="start_info">請在選單內選擇一興趣點作為起點</string>
+    <string name="end_info">請在選單內選擇或搜尋一興趣點作為終點</string>
+    <string name="no_walk_stair">不走樓梯</string>
+    <string name="not_in_this_building">尚未佈建訊號或啟動定位</string>
+    <string name="route_fail_msg">抱歉，您所設定的規劃條件無可通行的路徑，請確認您是否已經完成規劃路線的繪製並上傳?謝謝。</string>
+    <string name="processing">載入中…</string>
+    <string name="back_navi">回導航</string>
+    <!-- Welcome -->
+    <string name="terms_service_disclaimer">"服務條款 &amp; 免責聲明"</string> <!--Terms of Service &amp; Disclaimer-->
+    <string name="skip">略過</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+    <string name="imap_welcome_title">歡迎使用 SAILS MyMap</string>
+    <string name="imap_check_wifi_msg">親愛的用戶，您好。\n提醒您在手機尚未開啟Bluetooth情況下，僅能提供路線預覽功能。\n若您需要室內定位導航，請先開啟Bluetooth，謝謝。</string>
+    <!-- service -->
+    <string name="welcome_wuquanpark">歡迎光臨美術館綠園道</string>
+    <string name="introduction">瀏覽簡介</string>
+    <string name="push_msg_service">背景推播訊息服務</string>
+    <string name="notification_vibrate">通知時震動</string>
+    <string name="check_interval_min_param">檢查頻率 %d 分鐘</string>
+    <string name="dg_internet_no_network">Cannot connect to server, please check the network!</string>
+    <string name="action_loadproject">選擇專案</string>
+    <string name="action_enable_location">啟動定位</string>
+    <string name="action_disable_location">停止定位</string>
+    <string name="action_logout">登出</string>
+    <string name="floorguide">樓層說明</string>
+    <string name="network_error">錯誤</string>
+    <string name="network_error_msg">無法連線至伺服器，請將此平板拿至櫃檯設定</string>
+    <string name="ok">確認</string>
+    <string name="enter">進入</string>
+
+</resources>

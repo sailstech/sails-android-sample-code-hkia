@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HKIADemo.iml" filepath="$PROJECT_DIR$/HKIADemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SAILSEngine/SAILSEngine.iml" filepath="$PROJECT_DIR$/SAILSEngine/SAILSEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/engine/engine.iml" filepath="$PROJECT_DIR$/engine/engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hkia/ecsgroup.iml" filepath="$PROJECT_DIR$/hkia/ecsgroup.iml" />
+    </modules>
+  </component>
+</project>

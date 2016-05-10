@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFF"
+        android:clickable="true"
+        android:focusable="true">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:background="#FF49b5e7"
+            android:id="@+id/frameLayoutSearch">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/maptitle"
+                android:id="@+id/searchBarLinearLayout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView"
+                        android:src="@drawable/ic_action_search"
+                        android:layout_marginLeft="5dp" />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:singleLine="true"
+                        android:id="@+id/editTextSearch"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:hint="@string/Search" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageViewSearchCancel"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:adjustViewBounds="true"
+                        android:padding="7dp"
+                        android:clickable="true" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/listViewSearch"
+
+            android:layout_below="@+id/frameLayoutSearch" />
+
+        <ExpandableListView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/expandableListView"
+            android:clickable="true"
+            android:layout_below="@+id/frameLayoutSearch" />
+
+    </RelativeLayout>
+
+</LinearLayout>

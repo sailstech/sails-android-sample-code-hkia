@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="no_floor_tilte" type="id">No Floor</item>
+    <item name="ok" type="id">OK</item>
+    <item name="no_floor_message" type="id">There is no floor in this building, please select another building.
+    </item>
+    <item name="no_mapzip_message" type="id">There is no map package in this building, please select another building.
+    </item>
+    <item name="no_building_mapzip" type="id">No Building Package</item>
+
+</resources>

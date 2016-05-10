@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow"
+        android:visibility="visible"
+        android:id="@+id/linearLayout" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/tab_bg1">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/transferSubtypeIcon"
+            android:src="@drawable/stairs_up_inv"
+            android:padding="10dp"
+            android:layout_gravity="center|left"
+            android:layout_alignParentLeft="true" />
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@+id/transferSubtypeIcon"
+            android:background="#959595"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"></FrameLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/transferSubtypeIcon"
+            android:layout_toLeftOf="@+id/updownIcon">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/updown_remind_text"
+                android:text="請下樓至"
+                android:paddingBottom="5dp"
+                android:textColor="#888" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/entirefloorname"
+                android:text="臺大醫院一樓"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="#555" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/updownIcon"
+            android:src="@drawable/downarrow"
+            android:padding="10dp"
+            android:layout_gravity="center|right"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</LinearLayout>
