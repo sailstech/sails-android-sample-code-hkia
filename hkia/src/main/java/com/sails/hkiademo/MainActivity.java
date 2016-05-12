@@ -54,6 +54,7 @@ import com.sails.engine.SAILSMapView;
 import com.sails.engine.core.model.GeoPoint;
 import com.sails.engine.overlay.Marker;
 import com.sails.engine.overlay.ScreenDensity;
+import com.sails.poi.POIAssetsAdapter;
 import com.sails.service.Version;
 import com.sails.poi.POIActivity;
 
@@ -88,6 +89,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //    static String LANGUAGE="zh_TW";
     static boolean FLOOR_GUIDE=false;
     private static String sel_type, sel_subtype;
+    private String POI_Id="0205001";
+
     public void setMode(int mode) {
         placeholderFragment.mode = mode;
     }
@@ -110,7 +113,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //            locale = new Locale(LANGUAGE);
 //        }
 
-
+        loadPOIListProcedure();
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -152,6 +155,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         }
         ScreenDensity.density = getResources().getDisplayMetrics().density;
         amc = new AnimationController();
+    }
+
+    private void loadPOIListProcedure() {
+        POIAssetsAdapter.Import(this,"poi.json");
     }
 
 
@@ -856,7 +863,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                                 }
                             });
-                            mSails.startLocatingEngine();
+//                            mSails.startLocatingEngine();
 
                         }
                     }).start();
@@ -1146,7 +1153,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             notificationManager.setOnInfoClickListener(new NotificationManager.OnInfoClickListener() {
                 @Override
                 public void onClick(LocationRegion lr) {
-                    showWebView(lr.url);
+
+                    ((MainActivity)getActivity()).showPOIView(lr.url);
                 }
             });
             //notificationManager.enableRouteButton(false);
@@ -1367,6 +1375,15 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
     void onPOIViewClick(View v) {
-        startActivity(new Intent(this, POIActivity.class));
+        Intent i=new Intent(this, POIActivity.class);
+        i.putExtra("POI_Id",POI_Id);
+        startActivity(i);
+    }
+    void showPOIView(String id) {
+
+        Intent i=new Intent(this, POIActivity.class);
+        i.putExtra("POI_Id",id);
+        startActivity(i);
+
     }
 }

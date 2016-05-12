@@ -1,0 +1,27 @@
+[
+  {
+    "_id":"0205001",
+    "name":"759 Store",
+    "img1":"https://dl.dropboxusercontent.com/u/28029370/store_759.jpg",
+    "address":"Level 5",
+    "area":"Non-restricted Area",
+    "time":"09:00 – 21:00",
+    "tel":"3960 9426",
+    "email":"fb@ceccoils.com",
+    "website":"www.759store.com",
+    "introduction":"759 Store aims to bring quality lifestyle and consumption habit among Japan's residential areas to Hong Kong. The store creates a joyful Japanese shopping environment and atmosphere, and provides the trendiest confectionery and groceries parallel to Japan's local market. A wide range of famous Japanese food brands are available for customers. Apart from confectionery, beverages, noodles and other packed food imported from Japan, 759 Store offers products from other countries or districts around the world such as Korea, Taiwan, Europe, etc."
+  },
+  {
+    "_id":"0205002",
+    "name":"759 Kawaiiland",
+    "img1":"https://dl.dropboxusercontent.com/u/28029370/photo_759k.jpg",
+    "address":"Level 5",
+    "area":"Non-restricted Area",
+    "time":"09:00 – 21:00",
+    "tel":"3669 6984",
+    "email":"fb@759store.com",
+    "website":"www.759store.com",
+    "introduction":"Established in December 2013, 759 KAWAIILAND operates based on the business model of the Drug and Cosmetic Store in Japan. 759 KAWAIILAND offers personal care items, cosmetics, stationeries, baby, children and fashionable clothes, accessories and interesting gadgets, of which 90% are directly imported from Japan and overseas. Same as 759 STORE, 759 KAWAIILAND aims to provide desirable services, comfortable shopping environment, high quality and diversified products to our customers."
+
+  }
+]

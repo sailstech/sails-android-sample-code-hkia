@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HKIADemo.iml" filepath="$PROJECT_DIR$/HKIADemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/SAILSEngine/SAILSEngine.iml" filepath="$PROJECT_DIR$/SAILSEngine/SAILSEngine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/engine/engine.iml" filepath="$PROJECT_DIR$/engine/engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/hkia/ecsgroup.iml" filepath="$PROJECT_DIR$/hkia/ecsgroup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/engine/engine.iml" filepath="$PROJECT_DIR$/engine/engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hkia/hkia.iml" filepath="$PROJECT_DIR$/hkia/hkia.iml" />
     </modules>
   </component>
 </project>
