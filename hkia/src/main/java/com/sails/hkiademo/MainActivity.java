@@ -55,6 +55,7 @@ import com.sails.engine.core.model.GeoPoint;
 import com.sails.engine.overlay.Marker;
 import com.sails.engine.overlay.ScreenDensity;
 import com.sails.service.Version;
+import com.sails.poi.POIActivity;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -67,6 +68,10 @@ import java.util.Map;
 
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener, LocationListener {
+
+    static String TOKEN="831794496a0f4de9aa0651d97610733f";
+    static String BUILDING_ID="57317a41e62e7a7b59000459";
+
     static boolean BLE=false;
     static boolean TEST=false;
     static boolean BLUEDOT=true;
@@ -151,9 +156,6 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
 
     public static final int SIGN_IN = 1;
-    //SAILS Cloud
-    static String TOKEN="831794496a0f4de9aa0651d97610733f";
-    static String BUILDING_ID="57317a41e62e7a7b59000459";
 
 
     @Override
@@ -655,7 +657,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             if (!lr.getFloorName().equals(mSailsMapView.getCurrentBrowseFloorName())) {
                 mSailsMapView.loadFloorMap(lr.getFloorName());
             }
-            mSailsMapView.setAnimationToZoom((byte) 20);
+            mSailsMapView.setAnimationToZoom((byte) 19);
             mSailsMapView.getMarkerManager().clear();
             if (mSails.isInThisBuilding())
                 mSailsMapView.getMarkerManager().setLocationRegionMarker(lr, Marker.boundCenterBottom(getActivity().getResources().getDrawable(R.drawable.destination)));
@@ -1363,5 +1365,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+    void onPOIViewClick(View v) {
+        startActivity(new Intent(this, POIActivity.class));
     }
 }
