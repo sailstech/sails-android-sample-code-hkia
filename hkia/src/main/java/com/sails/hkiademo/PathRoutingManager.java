@@ -56,17 +56,19 @@ class PathRoutingManager extends Handler {
         context = input;
         routePaint.setStyle(Paint.Style.STROKE);
 //        routePaint.setAlpha(200);
-        routePaint.setStrokeWidth(2 * ScreenDensity.density);
+        routePaint.setStrokeWidth(5 * ScreenDensity.density);
         routePaint.setStrokeJoin(Paint.Join.ROUND);
         routePaint.setStrokeCap(Paint.Cap.ROUND);
         routePaint.setFilterBitmap(true);
-        routeStrokePaint.setColor(Color.parseColor("#333333"));
+        routePaint.setAntiAlias(true);
+        routeStrokePaint.setColor(Color.argb(255,255,255,255));//parseColor("#333333"));
         routeStrokePaint.setStyle(Paint.Style.STROKE);
-        routeStrokePaint.setAlpha(200);
-        routeStrokePaint.setStrokeWidth(5 * ScreenDensity.density);
+//        routeStrokePaint.setAlpha(200);
+        routeStrokePaint.setStrokeWidth(12 * ScreenDensity.density);
         routeStrokePaint.setStrokeJoin(Paint.Join.ROUND);
         routeStrokePaint.setStrokeCap(Paint.Cap.ROUND);
         routeStrokePaint.setFilterBitmap(true);
+        routeStrokePaint.setAntiAlias(true);
 
 //        routePaint.setShader(new LinearGradient(0, 0, 0, 20, Color.BLACK, Color.WHITE, Shader.TileMode.REPEAT));
         this.mSails = mSails;
@@ -104,7 +106,7 @@ class PathRoutingManager extends Handler {
                     }
                 }
             }
-            this.sleep(500);
+            this.sleep(100);
         }
     }
 
@@ -119,7 +121,7 @@ class PathRoutingManager extends Handler {
 
     public void enableHandler(LocationRegion lr) {
         mSailsMapView.getOverlays().clear();
-        mSailsMapView.getOverlays().add(listOverlay);
+        mSailsMapView.getDynamicOverlays().add(listOverlay);
         if (this.lr == null || lr.getFloorNumber() != this.lr.getFloorNumber())
             regionlist = null;
 
@@ -232,7 +234,9 @@ class PathRoutingManager extends Handler {
                     toast.show();
                     return;
                 }
-                routePaint.setColor(0xFF35b3e5);
+                routePaint.setColor(Color.argb(255,0,134,255));//parseColor("#333333"));
+
+//                routePaint.setColor(0xFF35b3e5);
                 mSailsMapView.getMarkerManager().clear();
                 mSailsMapView.getMarkerManager().setLocationRegionMarker(lr, Marker.boundCenterBottom(pointer.get().getResources().getDrawable(R.drawable.destination)));
 
@@ -240,7 +244,10 @@ class PathRoutingManager extends Handler {
                 if (mSails.isLocationFix())
                     ri = mSails.route3D(lr);
             } else {
-                routePaint.setColor(0xFF85b038);
+                routePaint.setColor(Color.argb(255,0,134,255));//parseColor("#333333"));
+
+
+//                routePaint.setColor(0xFF85b038);
                 mSailsMapView.getMarkerManager().clear();
                 if(start!=null)
                 mSailsMapView.getMarkerManager().setLocationRegionMarker(start, Marker.boundCenter(pointer.get().getResources().getDrawable(R.drawable.start_point)));
@@ -248,7 +255,10 @@ class PathRoutingManager extends Handler {
                 ri = mSails.route3D(start, lr);
             }
         } else {
-            routePaint.setColor(0xFF85b038);
+            routePaint.setColor(Color.argb(255,0,134,255));//parseColor("#333333"));
+
+
+//            routePaint.setColor(0xFF85b038);
             mSailsMapView.getMarkerManager().clear();
             if(start!=null)
                 mSailsMapView.getMarkerManager().setLocationRegionMarker(start, Marker.boundCenter(pointer.get().getResources().getDrawable(R.drawable.start_point)));

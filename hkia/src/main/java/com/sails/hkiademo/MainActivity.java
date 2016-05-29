@@ -11,6 +11,8 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,6 +49,9 @@ import android.widget.Toast;
 //import com.sails.sailscloud.SignInActivity;
 //import com.sails.cloud.SAILSBuilding;
 //import com.sails.cloud.SAILSCloud;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.nineoldandroids.animation.Animator;
 import com.sails.engine.Beacon;
 import com.sails.engine.LocationRegion;
 import com.sails.engine.SAILS;
@@ -57,6 +62,7 @@ import com.sails.engine.overlay.ScreenDensity;
 import com.sails.poi.POIAssetsAdapter;
 import com.sails.service.Version;
 import com.sails.poi.POIActivity;
+import com.sails.ui.DirectionIndicator;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -73,7 +79,9 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     static String TOKEN="831794496a0f4de9aa0651d97610733f";
     static String BUILDING_ID="57317a41e62e7a7b59000459";
 
-    static boolean BLE=false;
+    boolean trueNaviMode=false;
+
+    static boolean BLE=true;
     static boolean TEST=false;
     static boolean BLUEDOT=true;
     private static final String TAG = "MainActivity";
@@ -265,12 +273,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         }
         placeholderFragment.functionClickProcedure();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        setupMenuItemTitle(menu);
         return true;
     }
 
@@ -290,23 +298,52 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         MenuInflater inflater = popup.getMenuInflater();
         popup.setOnMenuItemClickListener(this);
         inflater.inflate(R.menu.main, popup.getMenu());
-
+        setupMenuItemTitle(popup.getMenu());
 //            if(mSearchManager.isReady)
 //                popup.getMenu().findItem(R.id.action_promote).setVisible(true);
 //            else
 //                popup.getMenu().findItem(R.id.action_promote).setVisible(false);
         popup.show();
     }
-
+    private void setupMenuItemTitle(Menu menu) {
+        if(mSails.isLocationEngineStarted()) {
+            menu.findItem(R.id.action_enable_location).setTitle(R.string.action_disable_location);
+        } else {
+            menu.findItem(R.id.action_enable_location).setTitle(R.string.action_enable_location);
+        }
+    }
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_enable_location:
+                engineStartStopProcedure();
+                return true;
             case R.id.action_aboutus:
                 Intent aboutus = new Intent(this, AboutUsActivity.class);
                 startActivity(aboutus);
                 return true;
             default:
                 return false;
+        }
+    }
+
+    private void engineStartStopProcedure() {
+        if (mSails != null) {
+            if(mSails.isLocationEngineStarted()) {
+                mSailsMapView.setLocatorMarkerVisible(false);
+                mSailsMapView.invalidate();
+                isPathHandlerEnabled = false;
+                if (mRoutingHandler.enable) {
+                    isPathHandlerEnabled = true;
+                    mRoutingHandler.enable = false;
+                }
+                mSails.stopLocatingEngine();
+                mSailsMapView.setMode(SAILSMapView.GENERAL);
+            } else {
+                mSailsMapView.setLocatorMarkerVisible(true);
+                mSails.startLocatingEngine();
+                mSailsMapView.setMode(SAILSMapView.LOCATION_CENTER_LOCK|SAILSMapView.FOLLOW_PHONE_HEADING);
+            }
         }
     }
 
@@ -513,11 +550,15 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //            mSailsMapView.setSAILSEngine(mSails);
             //set location pointer icon.
 //            LocationRegion.FONT_LANGUAGE = LocationRegion.NORMAL;
+            Paint accuracyCircleFill = new Paint(Paint.ANTI_ALIAS_FLAG);
+            accuracyCircleFill.setStyle(Paint.Style.FILL);
+            accuracyCircleFill.setColor(Color.rgb(53, 179, 229));//);
+            accuracyCircleFill.setAlpha(0);
+            accuracyCircleFill.setStrokeWidth(0);
+            accuracyCircleFill.setStrokeJoin(Paint.Join.ROUND);
 
-            if(BLUEDOT)
-                mSailsMapView.setLocationMarker(R.drawable.circle2, R.drawable.circle2, null, 35);
+            mSailsMapView.setLocationMarker(R.drawable.myloc_cir, R.drawable.myloc_arr, accuracyCircleFill, 100);
             //set location marker visible.
-            mSailsMapView.setLocatorMarkerVisible(true);
             //load first floor map in package.
             final Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
 
@@ -863,7 +904,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                                 }
                             });
-//                            mSails.startLocatingEngine();
+                            mSails.startLocatingEngine();
 
                         }
                     }).start();
@@ -1374,10 +1415,129 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
-    void onPOIViewClick(View v) {
-        Intent i=new Intent(this, POIActivity.class);
-        i.putExtra("POI_Id",POI_Id);
-        startActivity(i);
+
+    void runNaviModeProcedure() {
+        trueNaviMode=true;
+        int height=findViewById(R.id.frameLayout).getHeight()/2;
+        ViewGroup.LayoutParams params=findViewById(R.id.di).getLayoutParams();
+        params.height=height;
+        findViewById(R.id.di).setLayoutParams(params);
+        findViewById(R.id.rlNavigator).setVisibility(View.VISIBLE);
+        YoYo.with(Techniques.FadeInUp).playOn(findViewById(R.id.rlNavigator));
+        YoYo.with(Techniques.FadeOutUp).playOn(findViewById(R.id.searchBarLinearLayout));
+        YoYo.with(Techniques.FadeOutUp).withListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                findViewById(R.id.searchBarLinearLayout).setVisibility(View.GONE);
+                findViewById(R.id.floorRelativeLayout).setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        }).playOn(findViewById(R.id.floorRelativeLayout));
+        YoYo.with(Techniques.FadeOut).playOn(findViewById(R.id.zoomin));
+        YoYo.with(Techniques.FadeOut).withListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                findViewById(R.id.zoomin).setVisibility(View.GONE);
+                findViewById(R.id.zoomout).setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        }).playOn(findViewById(R.id.zoomout));
+//        ((DirectionIndicator)findViewById(R.id.di)).setPhase(DirectionIndicator.PHASE1);
+//        ((DirectionIndicator)findViewById(R.id.di)).startAnimate();
+        ((DirectionIndicator)findViewById(R.id.di)).startDemoAnimate();//.startAnimate();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((DirectionIndicator)findViewById(R.id.di)).setDirection(0);
+
+            }
+        },2000);
+        ((DirectionIndicator)findViewById(R.id.di)).setOnCloseEventListener(new DirectionIndicator.OnCloseEventListener() {
+            @Override
+            public void OnClose() {
+                closeNaviModeProcedure();
+            }
+        });
+    }
+    void closeNaviModeProcedure() {
+        trueNaviMode=false;
+        ((DirectionIndicator)findViewById(R.id.di)).setArrowVisible(false);
+        YoYo.with(Techniques.FadeOutDown).withListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                findViewById(R.id.rlNavigator).setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        }).playOn(findViewById(R.id.rlNavigator));
+        findViewById(R.id.searchBarLinearLayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.floorRelativeLayout).setVisibility(View.VISIBLE);
+        YoYo.with(Techniques.FadeInDown).playOn(findViewById(R.id.searchBarLinearLayout));
+        YoYo.with(Techniques.FadeInDown).playOn(findViewById(R.id.floorRelativeLayout));
+        YoYo.with(Techniques.FadeIn).playOn(findViewById(R.id.zoomin));
+        YoYo.with(Techniques.FadeIn).playOn(findViewById(R.id.zoomout));
+        findViewById(R.id.zoomin).setVisibility(View.VISIBLE);
+        findViewById(R.id.zoomout).setVisibility(View.VISIBLE);
+        ((DirectionIndicator)findViewById(R.id.di)).stopAnimate();
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            }
+        },2000);
+    }
+    void onTestButtonClick(View v) {
+        if(trueNaviMode) {
+            closeNaviModeProcedure();
+        } else {
+            runNaviModeProcedure();
+        }
+
+
     }
     void showPOIView(String id) {
 

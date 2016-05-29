@@ -7,10 +7,10 @@
         <!--android:orderInCategory="100"-->
         <!--android:showAsAction="never"-->
         <!--android:visible="false"/>-->
-    <!--<item android:id="@+id/action_enable_location"-->
-        <!--android:title="@string/action_enable_location"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:showAsAction="never"/>-->
+    <item android:id="@+id/action_enable_location"
+        android:title="@string/action_enable_location"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
     <!--<item android:id="@+id/action_disable_loaction"-->
         <!--android:title="@string/action_disable_location"-->
         <!--android:orderInCategory="100"-->

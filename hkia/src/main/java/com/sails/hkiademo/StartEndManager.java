@@ -37,7 +37,7 @@ public class StartEndManager extends RelativeLayout {
     ImageView startImage, endImage, exchange;
     RelativeLayout startFrame, endFrame;
     Button beginNavi;
-    CheckBox noWalkStair;
+    CheckBox elevatorOnly;
     boolean isSetStartPoint = false;
     boolean isSetEndPoint = false;
 
@@ -62,7 +62,7 @@ public class StartEndManager extends RelativeLayout {
         beginNavi = (Button) view.findViewById(R.id.navibutton);
         startFrame = (RelativeLayout) view.findViewById(R.id.startframe);
         endFrame = (RelativeLayout) view.findViewById(R.id.endframe);
-        noWalkStair = (CheckBox) view.findViewById(R.id.noStairCheck);
+        elevatorOnly = (CheckBox) view.findViewById(R.id.noStairCheck);
         startName.setOnClickListener(clickListener);
         endName.setOnClickListener(clickListener);
         exchange.setOnClickListener(clickListener);
@@ -71,26 +71,26 @@ public class StartEndManager extends RelativeLayout {
         this.setVisibility(INVISIBLE);
         ((MainActivity)getContext()).placeholderFragment.slidingTransferLayout.setVisibility(INVISIBLE);
         final SharedPreferences sp1=((MainActivity) getContext()).getPreferences(Context.MODE_PRIVATE);
-        boolean clicked=sp1.getBoolean("noWalkStair",false);
+        boolean clicked=sp1.getBoolean("elevatorOnly",false);
         if (clicked){
-            noWalkStair.setChecked(true);
+            elevatorOnly.setChecked(true);
             pm.mSailsMapView.getRoutingManager().setRouteMode(com.sails.engine.PathRoutingManager.ESCALATOR_ONLY);
         }else{
-            noWalkStair.setChecked(false);
+            elevatorOnly.setChecked(false);
             pm.mSailsMapView.getRoutingManager().setRouteMode(com.sails.engine.PathRoutingManager.NORMAL_ROUTING);
         }
-        noWalkStair.setText(getResources().getString(R.string.no_walk_stair));
+        elevatorOnly.setText(getResources().getString(R.string.elevator_only));
 
-        noWalkStair.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        elevatorOnly.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    pm.mSailsMapView.getRoutingManager().setRouteMode(com.sails.engine.PathRoutingManager.ESCALATOR_ONLY);
+                    pm.mSailsMapView.getRoutingManager().setRouteMode(com.sails.engine.PathRoutingManager.ELEVATOR_ONLY);
 
-                    sp1.edit().putBoolean("noWalkStair",true).commit();
+                    sp1.edit().putBoolean("elevatorOnly",true).commit();
                 }else{
                     pm.mSailsMapView.getRoutingManager().setRouteMode(com.sails.engine.PathRoutingManager.NORMAL_ROUTING);
-                    sp1.edit().putBoolean("noWalkStair",false).commit();
+                    sp1.edit().putBoolean("elevatorOnly",false).commit();
                 }
             }
         });

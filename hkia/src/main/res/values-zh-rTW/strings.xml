@@ -35,7 +35,7 @@
     <string name="not_enough_accuracy">定位不準嗎?</string>
     <string name="start_info">請在選單內選擇一興趣點作為起點</string>
     <string name="end_info">請在選單內選擇或搜尋一興趣點作為終點</string>
-    <string name="no_walk_stair">不走樓梯</string>
+    <string name="elevator_only">只坐電梯</string>
     <string name="not_in_this_building">尚未佈建訊號或啟動定位</string>
     <string name="route_fail_msg">抱歉，您所設定的規劃條件無可通行的路徑，請確認您是否已經完成規劃路線的繪製並上傳?謝謝。</string>
     <string name="processing">載入中…</string>

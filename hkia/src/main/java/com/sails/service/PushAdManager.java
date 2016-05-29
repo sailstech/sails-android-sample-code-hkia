@@ -111,7 +111,7 @@ public class PushAdManager {
     {
         Notification noti = new Notification(R.drawable.noti_sails, contentTitle, System.currentTimeMillis());
         //Notification noti = new Notification(android.R.drawable.stat_notify_voicemail, strName, System.currentTimeMillis());
-        noti.setLatestEventInfo(mContext, contentTitle, contentText, contentIntent);
+//        noti.setLatestEventInfo(mContext, contentTitle, contentText, contentIntent);
         noti.flags |= Notification.FLAG_AUTO_CANCEL;
         NotificationManager notiMgr = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notiMgr.notify(nId, noti);

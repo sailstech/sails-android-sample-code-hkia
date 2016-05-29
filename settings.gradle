@@ -1,1 +1,1 @@
-include ':hkia', ':engine'
+include ':hkia', ':engine', ':ui'

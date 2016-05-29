@@ -34,7 +34,7 @@
     <string name="action_feedback">Feedback</string>
     <string name="start_info">Please choose one POI as start point</string>
     <string name="end_info">Please choose one POI as end point</string>
-    <string name="no_walk_stair">No Walk Stair</string>
+    <string name="elevator_only">Elevator only</string>
     <string name="not_enough_accuracy">Not enough accurate?</string>
     <string name="not_in_this_building">Not collect locating data or enable location engine yet</string>
     <string name="route_fail_msg">Sorry, the condition you set can\'t route successfully.Please check if you already upload path file.Thanks.</string>

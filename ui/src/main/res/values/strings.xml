@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ui</string>
+    <!--DirectionIndicator Strings-->
+    <string name="di_welcome">Welcome</string>
+    <string name="di_follow_arrow">Follow the arrow</string>
+    <string name="di_nothere">You are not in HKIA!</string>
+    <string name="di_disnavi">Navigation is not Avaliable</string>
+    <string name="di_goodbye">Bye!</string>
+    <string name="di_goal">Arrived</string>
+    <string name="di_enjoy">Enjoy!</string>
+    <string name="di_goodbye1">Goodbye!</string>
+</resources>

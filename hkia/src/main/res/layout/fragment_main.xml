@@ -142,7 +142,8 @@
         android:src="@drawable/hkialogo"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="false" />
+        android:layout_alignParentLeft="false"
+        android:onClick="onTestButtonClick" />
 
     <ImageView
         android:layout_width="55dp"
@@ -494,6 +495,31 @@
         android:id="@+id/tvVersion"
         android:layout_centerInParent="true"
         android:textSize="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:onClick="onTestButtonClick"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/navi_gradient"
+        android:id="@+id/rlNavigator"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="150dp">
+
+        <com.sails.ui.DirectionIndicator
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/di"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"></com.sails.ui.DirectionIndicator>
+    </RelativeLayout>
 
 
 </RelativeLayout>
