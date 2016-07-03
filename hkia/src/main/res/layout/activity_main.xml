@@ -12,20 +12,6 @@
         android:background="#fff1f1f1"
         android:visibility="gone">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="研x 陳總經理 \n 親臨指導"
-            android:id="@+id/tvWelcome"
-            android:layout_toRightOf="@+id/imageView8"
-            android:paddingLeft="20dp"
-            android:textSize="20dp"
-            android:layout_alignBottom="@+id/imageView8"
-            android:layout_alignTop="@+id/imageView8"
-            android:layout_alignWithParentIfMissing="false"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_toLeftOf="@+id/imageView9" />
 
         <ImageView
             android:layout_width="55dp"

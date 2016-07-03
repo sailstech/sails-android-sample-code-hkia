@@ -24,8 +24,8 @@
     <string name="start_preview">Path Preview</string>
     <string name="cancel_navi">Cancel Navigation</string>
     <string name="cancel_preview">Cancel Path Preview</string>
-    <string name="up_remind">Please Upstairs To</string>
-    <string name="down_remind">Please Downstairs To</string>
+    <string name="up_remind">Please Go Upstairs</string>
+    <string name="down_remind">Please Go Downstairs</string>
     <string name="target">Destination</string>
     <string name="myposition">My Position</string>
     <string name="set_start_point">Set Start Point</string>

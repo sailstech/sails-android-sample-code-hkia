@@ -1,5 +1,6 @@
 package com.sails.hkiademo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -19,6 +20,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 //import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -441,6 +444,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
      */
     public static class PlaceholderFragment extends Fragment {
 
+        private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0x01;
         boolean showlocatingmsg = false;
 
         FrameLayout frameLayoutFunction;
@@ -780,6 +784,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             showListView = false;
         }
 
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if(requestCode==MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+                afterPermissionRoutine();
+            }
+        }
+
         public boolean setMarkers(String type, String subtype) {
             mode = PlaceholderFragment.MULTIPLE_MARKER_MODE;
             notificationManager.closeNotification();
@@ -904,7 +916,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                                 }
                             });
-                            mSails.startLocatingEngine();
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkFineLocationPermissionRoutine();
+                                }
+
+
+                            });
 
                         }
                     }).start();
@@ -996,6 +1015,42 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         mTransferLayout.updateInfo(mRoutingHandler.getResultGNlist(), true);
                 }
             });
+        }
+
+        private void checkFineLocationPermissionRoutine() {
+            // Here, thisActivity is the current activity
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    afterPermissionRoutine();
+
+                    // Show an expanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+
+                } else {
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+                }
+            }
+
+        }
+
+        private void afterPermissionRoutine() {
+            mSails.startLocatingEngine();
+
         }
 
         // Eddie Hua

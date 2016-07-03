@@ -137,6 +137,7 @@
 
     <ImageView
         android:layout_width="150dp"
+        android:visibility="gone"
         android:layout_height="100dp"
         android:id="@+id/imageView7"
         android:src="@drawable/hkialogo"
