@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+/engine/engine-release.aar
+ui/libs/
+ui/src/main/res/drawable/
