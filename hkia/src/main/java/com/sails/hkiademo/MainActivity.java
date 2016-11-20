@@ -79,8 +79,10 @@ import java.util.Map;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener, LocationListener {
 
-    static String TOKEN="831794496a0f4de9aa0651d97610733f";
-    static String BUILDING_ID="57317a41e62e7a7b59000459";
+//    static String TOKEN="831794496a0f4de9aa0651d97610733f";
+//    static String BUILDING_ID="57317a41e62e7a7b59000459";
+    static String TOKEN="05e56c0a22d346148483b0786514133d";
+    static String BUILDING_ID="57ea381608920f6b4b00051d";
 
     boolean trueNaviMode=false;
 
@@ -392,7 +394,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             return;
         }
 
-//        super.onBackPressed();
+        super.onBackPressed();
 
     }
 
@@ -884,7 +886,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 public void onSuccess(String response) {
                     if (getActivity() == null)
                         return;
-
+                    if(mSails.checkMode(SAILS.WITH_GPS)) {
+//                        mSails.setGPSFloorLayer(mSails.getFloorNameList().get(0));
+                        mSails.setGPSFloorLayer(mSails.getFloorNameList().get(mSails.getFloorNameList().size()-1));
+                    }
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -960,11 +965,11 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                             }
                         }, 2000);
                     }
-
-                    if (!showlocatingmsg && mSails.isInThisBuilding() && mSails.isLocationFix()) {
+                    if (!showlocatingmsg && ((mSails.checkMode(SAILS.WITH_GPS))||(mSails.isInThisBuilding() && mSails.isLocationFix()))) {
                         identifyIndoor = ProgressDialog.show(getActivity(), "", getString(R.string.positioning), true, true);
                         showlocatingmsg = true;
                     }
+
 
                     if (mSails.isLocationFix()) {
 
@@ -1137,13 +1142,16 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
             mSails = new SAILS(activity);
+            mSails.setGPSThresholdParameter(3,5,-88); //in_to_out,out_to_in,beacon min power
+
+
             mSails.setEnvironmentIsHighBeaconDensity(true);//v1.51
 
             // EddieHua : create location change call back.
             SharedPreferences sp=getActivity().getSharedPreferences("ecs",MODE_PRIVATE);
 //            ((TextView)getActivity().findViewById(R.id.tvWelcome)).setText(sp.getString("welcome_msg","Welcome Dear Guest"));
             if(BLE)
-                mSails.setMode(SAILS.BLE_GFP_IMU|SAILS.BLE_ADVERTISING);
+                mSails.setMode(SAILS.BLE_GFP_IMU|SAILS.WITH_GPS);
 //                mSails.setMode(SAILS.BLE_GFP_ONLY|SAILS.BLE_ADVERTISING);
             else
                 mSails.setMode(SAILS.WIFI_GFP_IMU);
@@ -1415,7 +1423,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     //FOLLOW_PHONE_HEADING: the map follows the phone's heading.
                     //LOCATION_CENTER_LOCK: the map locks the current location in the center of map.
                     //ALWAYS_LOCK_MAP: the map will keep the mode even user moves the map.
-                    if (!mSails.isInThisBuilding()) {
+                    if (!mSails.isInThisBuilding()&&!mSails.isUseGPS()) {
                         Toast.makeText(getActivity(), R.string.not_in_this_building, Toast.LENGTH_SHORT).show();
                         mSailsMapView.setMode(NORMAL_MODE);
                         return;
