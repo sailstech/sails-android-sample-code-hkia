@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="positioning">定位中...</string>
+    <string name="settings">设定</string>
+    <string name="Search">搜寻</string>
+    <string name="exit">出入口</string>
+    <string name="food">餐点</string>
+    <string name="refreshment">饮品</string>
+    <string name="toilet">厕所</string>
+    <string name="shopping">购物</string>
+    <string name="atm">提款机</string>
+    <string name="takeme">带我去</string>
+    <string name="arrangepath">导引</string>
+    <string name="detail">更多</string>
+    <string-array name="more">
+        <item>設定</item>
+        <item>關於帆船科技</item>
+        <item>意見回饋</item>
+    </string-array>
+    <string name="no_location_region">本区域无「%1$s」</string>
+    <string name="detail_info">共%1$d笔相关资料</string>
+    <string name="up_remind">请上楼至</string>
+    <string name="down_remind">请下楼至</string>
+    <string name="target">目的地</string>
+    <string name="myposition">我的位置</string>
+    <string name="set_start_point">请设定起点..</string>
+    <string name="set_end_point">请设定终点..</string>
+    <string name="start_navi">开始导航</string>
+    <string name="start_preview">路线预览</string>
+    <string name="cancel_navi">结束导航</string>
+    <string name="cancel_preview">结束预览</string>
+    <string name="action_aboutus">关于</string>
+    <string name="action_feedback">意见回馈</string>
+    <string name="not_enough_accuracy">定位不准吗?</string>
+    <string name="start_info">请在选单内选择一兴趣点作为起点</string>
+    <string name="end_info">请在选单内选择或搜寻一兴趣点作为终点</string>
+    <string name="elevator_only">只搭电梯</string>
+    <string name="not_in_this_building">尚未布建讯号或启动定位</string>
+    <string name="route_fail_msg">抱歉，您所设定的规划条件无可通行的路径，请确认您是否已经完成规划路线的绘制并上传?谢谢。</string>
+    <string name="processing">加载中…</string>
+    <string name="back_navi">回导航</string>
+    <!-- Welcome -->
+    <string name="terms_service_disclaimer">\"服务条款 &amp; 免责声明\"</string> <!--Terms of Service &amp; Disclaimer-->
+    <string name="skip">略过</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+    <string name="imap_welcome_title">欢迎使用 SAILS MyMap</string>
+    <string name="imap_check_wifi_msg">親愛的用戶，您好。\n提醒您在手機尚未開啟Bluetooth情況下，僅能提供路線預覽功能。\n若您需要室內定位導航，請先開啟Bluetooth，謝謝。</string>
+    <!-- service -->
+    <string name="welcome_wuquanpark">欢迎光临</string>
+    <string name="introduction">浏览简介</string>
+    <string name="push_msg_service">背景推播讯息服务</string>
+    <string name="notification_vibrate">通知时震动</string>
+    <string name="check_interval_min_param">检查频率 %d 分钟</string>
+    <string name="dg_internet_no_network">无法连接到服务器，请检查网络！</string>
+    <string name="action_loadproject">选择专案</string>
+    <string name="action_enable_location">启动定位</string>
+    <string name="action_disable_location">停止定位</string>
+    <string name="action_logout">登出</string>
+    <string name="floorguide">楼层说明</string>
+    <string name="network_error">错误</string>
+    <string name="network_error_msg">无法连线至伺服器，请将此平板拿至柜台设定</string>
+    <string name="ok">确认</string>
+    <string name="enter">进入</string>
+    <string name="action_load_wifi_project">载入WiFi专案</string>
+    <string name="action_load_ble_project">载入BLE专案</string>
+    <string name="app_name">医惠展示厅</string>
+
+</resources>

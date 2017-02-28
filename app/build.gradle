@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+    defaultConfig {
+        applicationId 'com.sails.hkiademo'
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 6
+        versionName '1.62'
+    }
+    signingConfigs {
+    }
+    buildTypes {
+        release {
+//            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        hkia {
+            applicationId = "com.sails.hkiademo"
+            resValue "string", "TOKEN", "831794496a0f4de9aa0651d97610733f"
+            resValue "string", "BLE_PROJECT_ID", "57317a41e62e7a7b59000459"
+            resValue "string", "BLE_ONLY", "true"
+            resValue "string", "WIFI_PROJECT_ID", "57317a41e62e7a7b59000459"
+            resValue "string", "MAP_ROTATION", "58"
+            resValue "string", "MAP_ZOOM", "21"
+
+        }
+        ewell {
+            applicationId = "com.sails.ewelldemo"
+            resValue "string", "TOKEN", "d35e68f1360a408ab20943c972185e69"
+            resValue "string", "BLE_PROJECT_ID", "589a8701cb4a9a2b0900004d"
+            resValue "string", "BLE_ONLY", "false"
+            resValue "string", "WIFI_PROJECT_ID", "589a8706cb4a9a2b0900004e"
+            resValue "string", "MAP_ROTATION", "54"
+            resValue "string", "MAP_ZOOM", "22"
+
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.0@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+    compile project(':engine')
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.facebook.fresco:fresco:0.10.0'
+    apt 'com.bluelinelabs:logansquare-compiler:1.3.6'
+    compile 'com.bluelinelabs:logansquare:1.3.6'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.parse:parseui-widget-android:0.0.1'
+    compile 'com.parse:parse-android:1.13.1'
+    compile "com.mixpanel.android:mixpanel-android:4.+"
+//    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
+
+    compile project(':ui')
+}
